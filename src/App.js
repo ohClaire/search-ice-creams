@@ -6,41 +6,7 @@ import Data from './Data.json';
 import SearchBar from './search-bar/SearchBar';
 import IceCreams from './ice-creams/IceCreams';
 
-// class App extends Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       iceCreams: Data,
-//       flavor: 'chocolate',
-//     };
-//   }
-
-//   handleSubmit = (input) => {
-//     this.setState({ flavor: input });
-//   };
-
-//   render() {
-//     return (
-//       <div className="App">
-//         <h1>Find Your Ice Cream Flavor! 🍦🍦🍦</h1>
-//         <div className="inputs-container">
-//           <SearchBar handleSubmit={this.handleSubmit} />
-//           <Filter />
-//         </div>
-//         <div>
-//           <h2>Searched for '{this.state.flavor}' found: </h2>
-//           <IceCreams
-//             iceCreams={this.state.iceCreams}
-//             flavor={this.state.flavor}
-//           />
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-
 const App = () => {
-  const [iceCreams, setIceCreams] = useState(Data);
   const [flavor, setFlavor] = useState('');
   const [sortType, setSortType] = useState('Alphabetical order');
   const [filterType, setFilterType] = useState('Show all');
@@ -49,11 +15,10 @@ const App = () => {
     setFlavor(input);
   };
 
-  const searchedIceCreams = iceCreams
-    .filter((iceCream) => {
-      // filter for the search text then filter for the rating type
-      return iceCream.name.toLowerCase().includes(flavor);
-    })
+  const searchedIceCreams = Data.filter((iceCream) => {
+    // filter for the search text then filter for the rating type
+    return iceCream.name.toLowerCase().includes(flavor);
+  })
     .filter((iceCream) => {
       if (filterType === 'Show all') {
         return true;
@@ -92,7 +57,7 @@ const App = () => {
         />
       </div>
       <div>
-        <h2>
+        <h2 className="result">
           Showing {searchCount} for '{flavor}':
         </h2>
         <IceCreams iceCreams={searchedIceCreams} />
