@@ -15,7 +15,7 @@ const IceCreams = ({ iceCreams }) => {
     );
   });
 
-  return <div>{searchedIceCreams}</div>;
+  return <div className="container">{searchedIceCreams}</div>;
 };
 
 export default IceCreams;
